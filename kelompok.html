@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UMKM PUDDINGKU</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    .navbar {
+        background-color: #fffaf3 !important;
+        transition: all 0.4s ease;
+    }
+
+    .navbar.scrolled {
+        background-color: #fcecdc !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .nav-link.active, .nav-link:hover {
+        color: #d97706 !important;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #fffaf5;
+        color: #4b2e16;
+    }
+
+    /* Header Kontak */
+    .top-bar {
+      background-color: #5a2e0c;
+      color: #fff;
+      padding: 5px 0;
+      font-size: 14px;
+    }
+
+    .top-bar .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .contact-info span {
+      margin: 0 10px;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #fff;
+      border-bottom: 3px solid #e2c3a3;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+    }
+
+    .menu {
+      display: flex;
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu li {
+      margin: 0 10px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #5a2e0c;
+      font-weight: bold;
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    .logo img {
+      width: 40px;
+      vertical-align: middle;
+    }
+
+    .logo h2 {
+      margin: 0;
+      font-size: 20px;
+      color: #5a2e0c;
+    }
+
+    .logo span {
+      color: #b16b33;
+    }
+
+    /* Slider */
+    .slider {
+      position: relative;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.7s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      position: relative;
+      text-align: left;
+      color: #4b2e16;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      filter: brightness(90%);
+    }
+
+    .text {
+      position: absolute;
+      top: 40%;
+      left: 10%;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 20px 30px;
+      border-radius: 10px;
+    }
+
+    .text h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .text p {
+      font-size: 18px;
+    }
+
+    /* Tombol Navigasi */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255,255,255,0.6);
+      border: none;
+      font-size: 30px;
+      font-weight: bold;
+      color: #4b2e16;
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: #b16b33;
+      color: white;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    /* Dots */
+    .dots {
+      text-align: center;
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #ddd;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot.active {
+      background-color: #b16b33;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      background: linear-gradient(to bottom right, #fff7e6, #ffe8c2);
+      background-attachment: fixed;
+    }
+
+    .navbar {
+      background: #fcecdc;
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+    }
+
+    .navbar.scrolled {
+      background: #fffaf3;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand strong {
+      color: #d97706;
+      font-size: 1.3rem;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: #444 !important;
+    }
+
+    .nav-link:hover {
+      color:#d97706 !important;
+      transition: 0.3s;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 2s ease;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: rgba(0, 0, 0, 0.6);
+      display: inline-block;
+      padding: 15px 35px;
+      border-radius: 15px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #fef9c3;
+      margin-top: 15px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    section h2 {
+      color: #d97706;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .fade-video {
+      opacity: 0;
+      transition: opacity 5s ease-in-out;
+    }
+    .fade-video.active {
+      opacity: 1;
+    }
+
+    #galeri {
+      background:#FCD5CE;
+    }
+
+    .galeri-item {
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .galeri-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .galeri-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .galeri-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+
+    .btn-ulasan {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: #e60000;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-ulasan:hover {
+      background: #b80000;
+      color: #fff;
+    }
+
+    #iframe {
+      width: 100%;
+      height: 500px;
+      border: 0;
+    }
+
+    #kontak {
+      background: #FCD5CE;
+      color: white;
+    }
+
+    #kontak h3 {
+      color:#d97706;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background-color: #000000;
+      color: #111;
+      padding: 15px 0;
+      font-weight: 500;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+     
+    .video-container-portrait {
+      position: relative;
+      width: 100%;
+      max-width: 350px;  /* ukuran maksimal potrait */
+      aspect-ratio: 9 / 16; /* potrait 9:16 */
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .video-container-portrait video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* agar penuh tanpa distorsi */
+      border-radius: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: #F8EDEB;
+      margin-top: 40px;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom right, #F8EDEB);
+    }
+    h1 {
+      color: #d97706;
+      font-weight: 700;
+      margin-top: 40px;
+    }
+    .menu-card img {
+      background-color: #D9C3A1;
+      height: 200px;
+      width: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .menu-card {
+      transition: transform 0.3s ease;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      transform: translatex(-5px);
+    }
+    .btn-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+    }
+
+    .nav-pills .nav-link {
+      background-color: #fff;
+      color: #f7dece;
+      border-radius: 30px;
+      margin: 3px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link:hover {
+      background-color: #f9c9ab;
+      color: #fff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f8eeeb;
+      color: #4a2b0f;
+    }
+
+    .about-container {
+      padding: 60px 80px;
+      text-align: center;
+    }
+
+    .about-container h2 {
+      color: #d46a00;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .about-image {
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-image img {
+      width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-text {
+      flex: 1 1 500px;
+      text-align: left;
+      margin-left: -10px;
+    }
+
+    .about-text p {
+      gap: 40px;
+      font-size: 16px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    #about {
+    text-align: center;
+    padding-top: 100px; /* memberi jarak bagian about dari atas halaman */
+    }
+    /*bagian order now*/
+    .cart-icon {
+     color: #e60000;
+     text-decoration: none;
+     padding: 8px 12px;
+     border-radius: 50px;
+     background: rgba(255, 0, 0, 0.12);
+     transition: background 0.3s;
+    }
+
+    .cart-icon:hover {
+     background: rgba(255, 0, 0, 0.25);
+    }
+
+    .badge-cart {
+     position: absolute;
+     top: -6px;
+     right: -6px;
+     font-size: 0.7rem;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- HERO SECTION SLIDE VIDEO FULLSCREEN TANPA TEKS -->
+<section id="hero" class="position-relative" style="height:100vh; overflow:visible;">
+  <!-- VIDEO WRAPPER -->
+  <div class="position-absolute w-100 h-100" style="z-index:0;">
+    <video id="heroVideo1" autoplay muted loop playsinline class="position-absolute w-100 h-100 fade-video active" style="object-fit: cover;">
+      <source src="video/new Produk (1).mp4" type="video/mp4">
+    </video>
+    <video id="heroVideo2" autoplay muted loop playsinline class="position-absolute w-100 h-100 fade-video" style="object-fit: cover;">
+      <source src="video/new Produk (3).mp4" type="video/mp4">
+    </video>
+    <video id="heroVideo3" autoplay muted loop playsinline class="position-absolute w-100 h-100 fade-video" style="object-fit: cover;">
+      <source src="video/Cokelat Krem Feminim Toko Donat Banner (1).mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#hero">
+      <img src="gambar/bg/logo.png" alt="Logo Puddingku" width="55" height="55" class="me-2 rounded-circle">
+      <strong>PUDDINGKU</strong>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav mb-2 mb-lg-0 fw-semibold">
+        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ulasan">Ulasan</a></li>
+        <li class="nav-item"><a class="nav-link" href="#kontak">Contact</a></li>
+        <li class="nav-item d-flex align-items-center me-2">
+        <a href="pemesanan.html" class="btn btn-danger rounded-pill px-3 fw-semibold">
+         ORDER ONLINE
+         </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <section id="about">
+  <h2>About PUDDINGKU</h2>
+
+    <div class="about-content">
+      <div class="about-image">
+        <img src="gambar/bg/bg_1 slide.jpg" alt="Tentang Puddingku">
+      </div>
+
+      <div class="about-text">
+        <p>
+          UMKM yang bergerak di bidang kuliner dengan spesialisasi pada berbagai macam cake dan dessert. 
+          Kami menawarkan aneka puding, kue lembut, dan hidangan manis lainnya yang dibuat dari bahan-bahan berkualitas 
+          dan rasa rumahan yang otentik. Dengan tampilan yang menarik dan cita rasa yang memanjakan lidah, 
+          Puddingku menjadi pilihan tepat untuk camilan harian, hampers, maupun hidangan spesial di berbagai acara.
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!--bagian menu-->
+<section id="menu" class="py-5" style="background-color: #f5e1de;">
+  <div class="container">
+    <h2 class="text-center mb-4">Menu</h2>
+
+    <ul class="nav nav-pills justify-content-center mb-4" id="menuTabs">
+      <li class="nav-item">
+        <button class="nav-link active" data-category="all">All Menu</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-category="best seller">Best Seller</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-category="brownies">Brownies</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-category="cake">Cake</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-category="cookies">Cookies</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-category="dessert">Dessert</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" data-category="pudding">Pudding</button>
+      </li>
+    </ul>
+
+    <!-- Daftar Produk -->
+    <div class="row g-4" id="menuList">
+
+      <!-- Best Seller -->
+       <div class="col-md-3 col-sm-6" data-category="best seller" data-aos="zoom-in" data-aos-delay="50">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/banafe 2.jpg"  alt="Brownies Classic">
+          <div class="card-body text-center">
+            <h5 class="card-title">Desert box banafe</h5>
+            <p class="card-text">Brownies panggang lembut dengan rasa cokelat pekat.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-md-3 col-sm-6" data-category="best seller" data-aos="zoom-in" data-aos-delay="60">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/chocolate mouse cake.jpg" class="card-img-top" alt="Brownies Classic">
+          <div class="card-body text-center">
+            <h5 class="card-title">chocolate mouse cake</h5>
+            <p class="card-text">Brownies panggang lembut dengan rasa cokelat pekat.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="best seller" data-aos="zoom-in" data-aos-delay="70">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/milk bun.jpg" class="card-img-top" alt="Brownies Classic">
+          <div class="card-body text-center">
+            <h5 class="card-title">milk bun</h5>
+            <p class="card-text">Brownies panggang lembut dengan rasa cokelat pekat.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="best seller" data-aos="zoom-in" data-aos-delay="80">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding_mango.jpg" class="card-img-top" alt="Brownies Classic">
+          <div class="card-body text-center">
+            <h5 class="card-title">mango silky pudding</h5>
+            <p class="card-text">Brownies panggang lembut dengan rasa cokelat pekat.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Brownies -->
+      <div class="col-md-3 col-sm-6" data-category="brownies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/brownies/brownie burnt cheese cake.jpg" class="card-img-top" alt="Brownies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Brownie Burnt Cheese Cake</h5>
+            <p class="card-text">Brownies cokelat dengan lapisan burnt cheesecake yang creamy dan sedikit gurih. Teksturnya lembut di dalam dengan aroma kkeju panggang yang menggoda.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="brownies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/brownies/brownie.jpg" class="card-img-top" alt="Brownies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Brownie</h5>
+            <p class="card-text">Brownies cokelat dengan taburan keju parut gurih.</p>
+            <p class="fw-bold text-primary">Rp12.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="brownies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/brownies/brownies bites.jpg" class="card-img-top" alt="Brownies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Brownies Bites</h5>
+            <p class="card-text">Potongan kecil brownies panggang dengan rasa cokelat yang pekat dan tekstur fudgy.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cake -->
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/blueberry mouse.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Blueberry Mouse</h5>
+            <p class="card-text">Kue lembut dengan lapisan mousse blueberry yang manis dan sedikit asam, berpadu  dengan base brownies cokelat yang rich.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/chocolate mouse cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Chocolate Mouse Cake</h5>
+            <p class="card-text">Kue lembut dengan lapisan mouse cokelat yang manis dan berpadu dengan base cokelat yang rich.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/cookies&cream mouse.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cookies and Cream Mouse</h5>
+            <p class="card-text">Perpaduan mouse vanilla lembut dengan remahan biskuit cokelat yang renyah, disajikan diatas base brownies yang rich.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/mouse cake manggo.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Mango Mouse Cake</h5>
+            <p class="card-text">Kue lembut dengan lapisan mouse mango yang manis, berpadu dengan base brownies cokelat yang rich.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/matcha mouse cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Matcha Mouse Cake</h5>
+            <p class="card-text">Mouse lembut dengan aroma khas matcha premium, berpadu dengan base brownies cokelat yang rich. Perpaduan rasa manis, pahit, dan creamy.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/peach mouse cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Peach Mouse Cake</h5>
+            <p class="card-text">Mouse lembut dengan rasa peach yang manis dan segar, berpadu dengan base brownies cokelat yang rich.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/choco short cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Choco Short Cake</h5>
+            <p class="card-text">Kue lembut berlapis krim cokelat yang manis dan legit, dihiasi potongan cokelat di atasnya, cocok untuk pecinta rasa cokelat klasik.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/strawberri mpuse cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Strawberry Mouse Cake</h5>
+            <p class="card-text">Kue ringan dengan lapisan mouse strawberry yang lembut dan creamy, berpadu dengan aroma buah strawberry segar yang menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/strawberry petite cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Strawberry Petite Cake</h5>
+            <p class="card-text">Kue mini bertekstur lembut dengan topping krim dan potongan strawberry segar, tampil canitk dan manis dalam ukuran mungil.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/strawberry short cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Strawberry Short Cake</h5>
+            <p class="card-text">Kue sponge lembut berlapis krim vanilla dan potongan strawberry  segar, menghadirkan cita rasa manis dan segar yang seimbang.</p>
+            <p class="fw-bold text-primary">Rp50.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/taro mouse cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Taro Mouse Cake</h5>
+            <p class="card-text">Kue mouse berwarna ungu lembut dengan rasa talas yang khas, creamy, dan wangi, memberikan sensasi lembut di setiap gigitan.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cake">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cake/tiramisu mouse cake.jpg" class="card-img-top" alt="Cake">
+          <div class="card-body text-center">
+            <h5 class="card-title">Tiramisu Mouse Cake</h5>
+            <p class="card-text">Perpaduan mouse kopi dan krim keju mascarpone yang lembut, berpadu dengan taburan bubuk kakao diatasnya untuk rasa torasmisu yang elegan.</p>
+            <p class="fw-bold text-primary">Rp15.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cookies -->
+      <div class="col-md-3 col-sm-6" data-category="cookies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cookies/cookies_chococips.jpg" class="card-img-top" alt="Choco Chips Cookies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Choco Chips Cookies</h5>
+            <p class="card-text">Kue kering klasik yang renyahdi luar dan lembut di dalam, dipenuhi potongan cokelat chips yang manis dan lumer di mulut.</p>
+            <p class="fw-bold text-primary">Rp5.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cookies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cookies/cookies_oatmilk.jpg" class="card-img-top" alt="Cookies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cookies Oatmilk</h5>
+            <p class="card-text">Cookies sehat berbahan oat dan susu, bertekstur lembut dengan rasa gurih dan manis yang seimbang, cocok untuk camilan ringan.</p>
+            <p class="fw-bold text-primary">Rp5.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cookies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cookies/cookies_oreo.jpg" class="card-img-top" alt="Cookies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cookies Oreo</h5>
+            <p class="card-text">Perpaduan adonan cookies lembut dengan remahan oreo didalamanya, memberikam rasa cokelat khas dan tekstur yang unik.</p>
+            <p class="fw-bold text-primary">Rp5.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cookies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cookies/coookies_chocolate.jpg" class="card-img-top" alt="Cookies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cookies chocolate</h5>
+            <p class="card-text">Cookies vokelat penuh cita rasa, dibuat dengan adonan cokelat pekat yang manis dan sedikit pahit, sempurna untuk pecinta cokelat sejati.</p>
+            <p class="fw-bold text-primary">Rp5.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="cookies">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/cookies/redvelvet.jpg" class="card-img-top" alt="Cookies">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cookies Redvelvet</h5>
+            <p class="card-text">Cookies berwarna merah lembut dengan cita rasa khas red velvet, berpadu dengan potongan white chocolate yang menambah kelezatan.</p>
+            <p class="fw-bold text-primary">Rp5.000</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Dessert -->
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/cheese cuit strawberry.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Cheese Cuit Strawberry</h5>
+            <p class="card-text">Tekstur lembut dengan rasa cokelat yang kaya.</p>
+            <p class="fw-bold text-primary">Rp18.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/dessert box keju.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Dessert Box Keju</h5>
+            <p class="card-text">Campuran buah segar dan yogurt lembut menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/milk bath dessert box chocolate.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Milk Bath Dessert Box Chocolate</h5>
+            <p class="card-text">Campuran buah segar dan yogurt lembut menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/milk bath dessert box.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Milk Bath Dessert Box Keju</h5>
+            <p class="card-text">Campuran buah segar dan yogurt lembut menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/milk bun.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Milk Bun</h5>
+            <p class="card-text">Campuran buah segar dan yogurt lembut menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/mille crepes chocolate.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Mille Crepes Chocolate</h5>
+            <p class="card-text">Campuran buah segar dan yogurt lembut menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="dessert">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/dessert/mille crepes strawberry.jpg" class="card-img-top" alt="dessert">
+          <div class="card-body text-center">
+            <h5 class="card-title">Mille Crepes Strawberry</h5>
+            <p class="card-text">Campuran buah segar dan yogurt lembut menyegarkan.</p>
+            <p class="fw-bold text-primary">Rp20.000</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pudding -->
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/jerry cheese pudding.jpg" class="card-img-top" alt="pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Jerry  Cheese Pudding</h5>
+            <p class="card-text">Lembut, manis, dan kaya rasa cokelat.</p>
+            <p class="fw-bold text-primary">Rp12.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/jiggly pudding rabbit.jpg" class="card-img-top" alt="pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Jiggly Pudding Rabbit</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/rainbow petite pudding.jpg" class="card-img-top" alt="pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Rainbow Petite Pudding</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding banana.jpg" class="card-img-top" alt="pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Banana</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding leci.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Leci</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding matcha.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Matcha</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding strawberry.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Strawberry</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding taro.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Taro</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding_chocolate.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Chocolate</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudding_mango.jpg" class="card-img-button" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Mango</h5>
+            <p class="card-text">enak lezat dan rasanya manis</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/silky pudiing_bubble gum.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Silky Pudding Bubble Gum</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/tosuni jiggly  pudding.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">Tosuni Jiggly Pudding</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-sm-6" data-category="pudding">
+        <div class="card h-100 shadow-sm">
+          <img src="gambar/pudding/tripple choco pudding cup.jpg" class="card-img-top" alt="Pudding">
+          <div class="card-body text-center">
+            <h5 class="card-title">tripple Choco Pudding</h5>
+            <p class="card-text">Segar dengan aroma dan rasa mangga alami.</p>
+            <p class="fw-bold text-primary">Rp13.000</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Script Filter Menu -->
+<script>
+  const buttons = document.querySelectorAll('#menuTabs .nav-link');
+  const menuItems = document.querySelectorAll('#menuList > div.col-md-3');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const category = btn.getAttribute('data-category');
+      menuItems.forEach(item => {
+        const itemCategory = item.getAttribute('data-category');
+        if (category === 'all' || category === itemCategory) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  #menuList .col-md-3 {
+    transition: all 0.4s ease;
+  }
+</style>
+</section>
+ 
+<!--ulasan-->
+     <section id="ulasan" class="py-5 position-relative">
+        <!-- Tombol pojok kanan atas -->
+     <a href="ulasan.html" class="btn-ulasan">
+      <i class="bi bi-plus-circle me-1"></i> Rating </a>
+
+     <div class="container text-center">
+       <h2 class="judul-section">Ulasan Pelanggan</h2>
+       <p>Review Jujur Oleh Pelanggan ☕</p>
+     </div>
+
+        <!-- (lanjutan card ulasan) -->
+     </section>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan1.png" alt="Puding 1">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="50">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan2.png" alt="Puding 2">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="100">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan3.png" alt="Puding 3">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="150">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan4.png" alt="Puding 4">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="200">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan5.png" alt="Puding 5">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="250">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan6.png" alt="Puding 6">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="300">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan7.png" alt="Puding 7">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="350">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan8.png" alt="Puding 8">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="400">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan9.png" alt="Puding 9">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="450">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan10.png" alt="Puding 10">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="500">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan11.png" alt="Puding 11">
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6" data-aos="zoom-in" data-aos-delay="550">
+          <div class="galeri-item">
+            <img src="gambar/ulasan/ulasan12.png" alt="Puding 12">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section class="container my-5">
+  <h2 class="text-center mb-4 text-warning">Video PUDDINGKU</h2>
+  <p class="text-center mb-5">Lihat keseruan pembuatan dan kolaborasi kami dalam bentuk video!</p>
+
+  <div class="row justify-content-center g-4">
+    <div class="col-md-5 col-sm-6">
+      <div class="video-container-portrait mx-auto">
+        <video controls autoplay muted loop playsinline>
+          <source src="video/video_produk.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h5 class="mt-3 text-center text-dark">Varian Menu Puddingku 🍮</h5>
+    </div>
+
+    <div class="col-md-5 col-sm-6">
+      <div class="video-container-portrait mx-auto">
+        <video controls autoplay muted loop playsinline>
+          <source src="video/WhatsApp Video 2025-10-30 at 18.48.29.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h5 class="mt-3 text-center text-dark">Kolaborasi & Kegiatan 📸</h5>
+    </div>
+  </div>
+ </section>
+
+  <section id="kontak" class="text-center" style="padding: 50px 0;">
+    <div class="container">
+        <p style="text-transform: uppercase; font-size: 0.8em; color: #8d4949; letter-spacing: 2px;">Contact</p>
+        <h3 style="font-size: 2.5em; margin-bottom: 50px;">Get Us Contact</h3>
+        <p style="max-width: 600px; margin: 0 auto 50px; color: #8d4949;">
+          Jl. Wilis No. 19, Nganjuk, Ganung Kidul, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64419
+          atau bisa menghubungi melalui media sosial yang tersedia pada link dibawah ini
+        </p>
+
+        <div class="row" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 50px;">
+            
+            <div class="contact-box" style="background-color: #f3aaaa; color: #8d4949; padding: 30px; border-radius: 10px; width: 300px; text-align: left;">
+                <h4 style="font-size: 1.2em; margin-top: 0;">TikTok</h4>
+                <p style="font-size: 1.5em; font-weight: bold; margin-bottom: 0;"><a href="https://www.tiktok.com/@puddingku_id?_r=1&_t=ZS-916mG3911OP">puddingku_id</a></p>
+            </div>
+
+            <div class="contact-box" style="background-color: #f3aaaa; color: #8d4949; padding: 30px; border-radius: 10px; width: 300px; text-align: left;">
+                <h4 style="font-size: 1.2em; margin-top: 0;">Instagram</h4>
+                <p style="font-size: 1.5em; font-weight: bold; margin-bottom: 0;"><a href="https://www.instagram.com/puddingku_id?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">puddingku_id</a></p>
+            </div>
+
+            <div class="contact-box" style="background-color: #f3aaaa; color: #8d4949; padding: 30px; border-radius: 10px; width: 300px; text-align: left;">
+                <h4 style="font-size: 1.2em; margin-top: 0;">WhatsApp</h4>
+                <p style="font-size: 1.5em; font-weight: bold; margin-bottom: 0;"><a href="https://wa.me/628157765777">628157765777</a></p>
+            </div>
+            
+        </div>
+        
+        <div class="mt-4">
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.6904820811205!2d111.90505247443035!3d-7.608620775208614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e784b0029ea6d53%3A0xd3f37a9ee10f047b!2sPUDDINGKU%20DESSERT%20BAR!5e0!3m2!1sid!2sid!4v1760835777982!5m2!1sid!2sid"
+            width="100%"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+  <footer class="text-center py-4" style="background:#111;color:white;">
+    <class="mb-1">© 2025 PUDDINGKU | Cita Rasa Lokal, Kualitas Nasional
+  </footer>
+
+  <a href="https://wa.me/628157765777" target="_blank" 
+     class="position-fixed bottom-0 start-0 m-4 btn btn-success rounded-circle shadow" 
+     style="width:60px;height:60px;display:flex;justify-content:center;align-items:center;font-size:1.6rem;">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+   
+  <button id="toTopBtn" class="btn btn-warning position-fixed bottom-0 end-0 m-5 rounded-circle shadow">
+  <i class="bi bi-arrow-up"></i>
+  </button>
+
+</script>
+
+<!-- SCRIPT UNTUK GANTI VIDEO OTOMATIS -->
+<script>
+  const videos = [
+    document.getElementById("heroVideo1"),
+    document.getElementById("heroVideo2"),
+    document.getElementById("heroVideo3")
+  ];
+
+  let current = 0;
+
+  setInterval(() => {
+    videos.forEach(v => v.classList.remove("active"));
+    current = (current + 1) % videos.length;
+    videos[current].classList.add("active");
+  }, 10000); // Ganti tiap 5 detik
+</script>
+
+  <script>
+    window.addEventListener("scroll", function() {
+      const navbar = document.querySelector(".navbar");
+      navbar.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+  AOS.init({ duration: 1000, once: true });
+  </script>
+
+</body>
+
+</html>

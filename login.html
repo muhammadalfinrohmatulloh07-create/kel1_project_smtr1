@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slide Login Form - Enhanced</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: url('gambar/bg/bg3slide.jpg') center / cover fixed no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      transition: background-image 1s ease-in-out;
+    }
+
+    /* efek blur background */
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 186, 186, 0.55), rgba(212, 78, 78, 0.63));
+      backdrop-filter: blur(6px);
+    }
+
+    /* animasi masuk card */
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-container {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 238, 238, 0.9);
+      padding: 45px 55px;
+      border-radius: 15px;
+      width: 380px;
+      color: #4a1c1c;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      animation: fadeSlide .7s ease-out;
+    }
+
+    .login-container h2 {
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      font-size: 22px;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .input-group label {
+      font-size: 14px;
+      color: #6c2e2e;
+      font-weight: 600;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #e99494;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .input-group input:focus {
+      border-color: #ff7661;
+      box-shadow: 0 0 6px rgba(255, 118, 97, 0.6);
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 20px;
+      color: #6c2e2e;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(90deg, #ff847c, #ff5e57);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform .25s ease;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .social-login {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #4a1c1c;
+    }
+
+    .social-login a {
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .social-login a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        width: 90%;
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay"></div>
+
+  <div class="login-container">
+    <h2>LOGIN TO PUDDINGKU</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required />
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required />
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" checked /> Keep Me Logged In</label>
+        <a href="#" style="color:#882121; font-weight:600;">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="login-btn">LOGIN</button>
+
+      <div class="social-login">
+        <p>Or Login Using :</p>
+        <a href="#" style="color:#802828;">Email</a> |
+        <a href="#" style="color:#802828;">Phone number</a> |
+        <a href="#" style="color:#802828;" onclick="loginWithGoogle()">Google</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Background tetap 1 foto, tidak slideshow
+// (Slideshow dihapus agar background tidak kedip)
+
+
+    const form = document.getElementById('loginForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Login Berhasil! Selamat datang di PUDDINGKU 🍮");
+      window.location.href = "kelompok.html";
+    });
+
+    function loginWithGoogle() {
+      alert("Login Google berhasil!");
+      window.location.href = "admin.html";
+    }
+  </script>
+</body>
+</html>

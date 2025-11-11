@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ulasan Puddingku</title>
+
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: url("bg.jpg") center/cover no-repeat fixed;
+    padding: 30px;
+    color: #333;
+    background: #FCD5CE;
+  }
+
+  /* Tombol kembali */
+  .back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: #FFF5E6(255, 255, 255, 0.8);
+    backdrop-filter: blur(6px);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #b16b33;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .back-button:hover {
+    background: #b16b33;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .rating-container {
+    max-width: 850px;
+    margin: 80px auto 30px auto;
+    background: rgba(255,255,255,0.70);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 30px;
+  }
+
+  .review {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    transition: 0.3s;
+  }
+
+  .review:hover {
+    transform: translateY(-3px);
+  }
+
+  .review-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 8px;
+  }
+
+  .add-review input,
+  .add-review textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  .add-review button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    background: #b16b33;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  #star-input span {
+    font-size: 32px;
+    cursor: pointer;
+    color: #ccc;
+  }
+
+  #star-input {
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- 🔙 Tombol Kembali -->
+<a href="kelompok.html" class="back-button" title="Kembali ke halaman utama">⟵</a>
+
+<div class="rating-container">
+
+  <h2 style="margin-bottom: 10px;">Ulasan Pelanggan 🍮</h2>
+  <div id="avg-rating" style="font-size: 30px; font-weight: bold;">0.0</div>
+  <div id="avg-stars" style="color:#ffb400; font-size: 22px;">☆☆☆☆☆</div>
+  <div id="total-reviews">Belum ada ulasan</div>
+  <hr>
+
+  <div id="reviews"></div>
+
+  <div class="add-review">
+    <h3>Tambah Ulasan Produk 🍮</h3>
+
+    <input type="text" id="review-product" placeholder="Nama produk (contoh: Dessert Banoffee)">
+    <input type="text" id="review-username" placeholder="Username">
+
+    <div id="star-input">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+
+    <textarea id="review-text" placeholder="Tulis ulasan kamu di sini..."></textarea>
+
+    <input type="file" id="review-image" accept="image/*">
+
+    <button id="submit-review">KIRIM ULASAN</button>
+  </div>
+</div>
+
+<script>
+let reviews = JSON.parse(localStorage.getItem("puddingReviews")) || [];
+
+function saveToLocalStorage() {
+  localStorage.setItem("puddingReviews", JSON.stringify(reviews));
+}
+
+function renderReviews() {
+  const container = document.getElementById("reviews");
+  container.innerHTML = "";
+
+  reviews.forEach(r => {
+    const div = document.createElement("div");
+    div.classList.add("review");
+    div.innerHTML = `
+      <b>${r.user}</b> — ${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}
+      <div>Produk: <b>${r.product}</b></div>
+      ${r.image ? `<img src="${r.image}" class="review-image">` : ""}
+      <div>${r.text}</div>
+      <button onclick="deleteReview(${r.id})"
+        style="float:right;border:none;background:none;cursor:pointer;font-size:18px;">🗑</button>
+      <br>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function renderStats() {
+  const total = reviews.length;
+  const avg = total ? (reviews.reduce((a, b) => a + b.rating, 0) / total).toFixed(1) : 0;
+
+  document.getElementById("avg-rating").textContent = avg;
+  document.getElementById("avg-stars").textContent =
+    "★".repeat(Math.round(avg)) + "☆".repeat(5 - Math.round(avg));
+  document.getElementById("total-reviews").textContent =
+    total ? `Berdasarkan ${total} ulasan` : "Belum ada ulasan";
+}
+
+renderReviews();
+renderStats();
+
+let selectedRating = 0;
+
+// klik bintang
+document.querySelectorAll("#star-input span").forEach(star => {
+  star.addEventListener("click", () => {
+    selectedRating = parseInt(star.getAttribute("data-value"));
+    document.querySelectorAll("#star-input span").forEach(s =>
+      s.style.color = s.getAttribute("data-value") <= selectedRating ? "#b16b33" : "#ccc"
+    );
+  });
+});
+
+// kirim ulasan
+document.getElementById("submit-review").addEventListener("click", () => {
+  const product = document.getElementById("review-product").value.trim();
+  const username = document.getElementById("review-username").value.trim() || "Pengguna Baru";
+  const text = document.getElementById("review-text").value.trim();
+  const imgFile = document.getElementById("review-image").files[0];
+
+  if (!product) return alert("Nama produk wajib diisi.");
+  if (!selectedRating) return alert("Pilih rating bintang dulu.");
+  if (!text) return alert("Tulis ulasan terlebih dahulu.");
+
+  if (imgFile) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      addReview(e.target.result);
+    };
+    reader.readAsDataURL(imgFile);
+  } else {
+    addReview(null);
+  }
+});
+
+function addReview(imageBase64) {
+  const product = document.getElementById("review-product").value.trim();
+  const username = document.getElementById("review-username").value.trim() || "Pengguna Baru";
+  const text = document.getElementById("review-text").value.trim();
+
+  const newReview = {
+    id: Date.now(),
+    product,
+    user: username,
+    rating: selectedRating,
+    text,
+    image: imageBase64
+  };
+
+  reviews.unshift(newReview);
+  saveToLocalStorage();
+
+  document.getElementById("review-product").value = "";
+  document.getElementById("review-username").value = "";
+  document.getElementById("review-text").value = "";
+  document.getElementById("review-image").value = "";
+  selectedRating = 0;
+  document.querySelectorAll("#star-input span").forEach(s => s.style.color = "#ccc");
+
+  renderReviews();
+  renderStats();
+}
+
+// hapus ulasan
+function deleteReview(id) {
+  if (confirm("Hapus ulasan ini?")) {
+    reviews = reviews.filter(r => r.id !== id);
+    saveToLocalStorage();
+    renderReviews();
+    renderStats();
+  }
+}
+</script>
+
+</body>
+</html>
