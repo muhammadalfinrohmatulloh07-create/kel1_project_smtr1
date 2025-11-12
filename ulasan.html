@@ -106,10 +106,9 @@
   max-width: 850px;
   margin: 80px auto 30px auto;
   display: flex;
-  flex-direction: column;   /* ✅ Atas -> Bawah */
-  gap: 25px;                /* ✅ Jarak antar card */
+  flex-direction: column;
+  gap: 25px;
 }
-
 
 /* Bagian list ulasan */
 .review-list {
@@ -162,17 +161,7 @@
 
 <div class="rating-container">
 
-  <!-- BAGIAN ULASAN -->
-  <div class="card-box">
-    <h2 style="margin-bottom: 10px;">Ulasan Pelanggan 🍮</h2>
-    <div id="avg-rating" style="font-size: 30px; font-weight: bold;">0.0</div>
-    <div id="avg-stars" style="color:#ffb400; font-size: 22px;">☆☆☆☆☆</div>
-    <div id="total-reviews">Belum ada ulasan</div>
-    <hr>
-    <div id="reviews"></div>
-  </div>
-
-  <!-- FORM TAMBAH ULASAN -->
+  <!-- ✅ FORM TAMBAH ULASAN (DITAMPILKAN DI ATAS) -->
   <div class="card-box add-review">
     <h3>Tambah Ulasan Produk 🍮</h3>
 
@@ -191,6 +180,16 @@
     <input type="file" id="review-image" accept="image/*">
 
     <button id="submit-review">KIRIM ULASAN</button>
+  </div>
+
+  <!-- ✅ ULASAN PELANGGAN (DITAMPILKAN DI BAWAH) -->
+  <div class="card-box">
+    <h2 style="margin-bottom: 10px;">Ulasan Pelanggan 🍮</h2>
+    <div id="avg-rating" style="font-size: 30px; font-weight: bold;">0.0</div>
+    <div id="avg-stars" style="color:#ffb400; font-size: 22px;">☆☆☆☆☆</div>
+    <div id="total-reviews">Belum ada ulasan</div>
+    <hr>
+    <div id="reviews"></div>
   </div>
 
 </div>
