@@ -101,6 +101,41 @@
   #star-input {
     margin-bottom: 10px;
   }
+
+  .rating-container {
+  max-width: 1000px;
+  margin: 80px auto 30px auto;
+  display: flex;
+  gap: 20px;
+}
+
+/* Bagian list ulasan */
+.review-list {
+  flex: 2;
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Form tambah ulasan */
+.add-review {
+  flex: 1;
+  background: rgba(255,255,255,0.80);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  height: fit-content;
+}
+
+@media (max-width: 768px) {
+  .rating-container {
+    flex-direction: column;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -110,14 +145,17 @@
 
 <div class="rating-container">
 
-  <h2 style="margin-bottom: 10px;">Ulasan Pelanggan 🍮</h2>
-  <div id="avg-rating" style="font-size: 30px; font-weight: bold;">0.0</div>
-  <div id="avg-stars" style="color:#ffb400; font-size: 22px;">☆☆☆☆☆</div>
-  <div id="total-reviews">Belum ada ulasan</div>
-  <hr>
+  <!-- BAGIAN ULASAN -->
+  <div class="review-list">
+    <h2 style="margin-bottom: 10px;">Ulasan Pelanggan 🍮</h2>
+    <div id="avg-rating" style="font-size: 30px; font-weight: bold;">0.0</div>
+    <div id="avg-stars" style="color:#ffb400; font-size: 22px;">☆☆☆☆☆</div>
+    <div id="total-reviews">Belum ada ulasan</div>
+    <hr>
+    <div id="reviews"></div>
+  </div>
 
-  <div id="reviews"></div>
-
+  <!-- FORM TAMBAH ULASAN -->
   <div class="add-review">
     <h3>Tambah Ulasan Produk 🍮</h3>
 
@@ -133,11 +171,11 @@
     </div>
 
     <textarea id="review-text" placeholder="Tulis ulasan kamu di sini..."></textarea>
-
     <input type="file" id="review-image" accept="image/*">
 
     <button id="submit-review">KIRIM ULASAN</button>
   </div>
+
 </div>
 
 <script>
