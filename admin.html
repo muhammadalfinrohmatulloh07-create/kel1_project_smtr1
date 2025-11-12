@@ -207,14 +207,146 @@
         </div>
       </section>
 
+
       <section id="section-settings" style="display:none">
-        <div class="card">
-          <h3>Pengaturan</h3>
-          <p class="muted">Di demo ini pengaturan terbatas. Data disimpan di localStorage browser.</p>
-          <div style="margin-top:12px">
-            <button id="resetData" class="btn ghost">Reset Data Demo</button>
-          </div>
+        <div class="card p-4 setting-wrapper" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(8px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);">
+
+    <h3 class="mb-4">Pengaturan</h3>
+
+    <div class="settings-layout">
+        <!-- SIDE MINI MENU -->
+        <div class="settings-menu">
+            <button class="setting-tab active" data-target="general">Pengaturan Umum</button>
+            <button class="setting-tab" data-target="account">Pengaturan Akun & Admin</button>
+            <button class="setting-tab" data-target="product">Pengaturan Produk / Layanan</button>
+            <button class="setting-tab" data-target="payment">Pengaturan Pembayaran</button>
+            <button class="setting-tab" data-target="shipping">Pengaturan Pengiriman</button>
+            <button class="setting-tab" data-target="appearance">Pengaturan Tampilan</button>
+            <button class="setting-tab" data-target="notification">Pengaturan Notifikasi</button>
+            <button class="setting-tab" data-target="analytics">Pengaturan Analitik & Laporan</button>
         </div>
+
+        <!-- CONTENT -->
+        <div class="settings-content">
+
+            <div class="content-item active" id="general">
+                <h4>Pengaturan Umum</h4>
+                <p>Atur nama UMKM, logo, lokasi & jam operasional.</p>
+                <label>Nama UMKM</label>
+                <input class="form-control" placeholder="Contoh: Puddingku">
+                <br>
+                <label>Jam Operasional</label>
+                <input class="form-control" type="time">
+            </div>
+
+            <div class="content-item" id="account">
+                <h4>Pengaturan Akun & Admin</h4>
+                <p>Kelola akun admin & ubah password.</p>
+                <button class="btn btn-primary btn-sm">Tambah Admin</button>
+            </div>
+
+            <div class="content-item" id="product">
+                <h4>Pengaturan Produk / Layanan</h4>
+                <p>Tambah, edit & hapus produk.</p>
+                <button class="btn btn-success btn-sm">Tambah Produk</button>
+            </div>
+
+            <div class="content-item" id="payment">
+                <h4>Pengaturan Pembayaran</h4>
+                <p>Atur metode pembayaran (E-wallet, Transfer Bank, COD).</p>
+            </div>
+
+            <div class="content-item" id="shipping">
+                <h4>Pengaturan Pengiriman</h4>
+                <p>Atur metode pengiriman & biaya ongkir.</p>
+            </div>
+
+            <div class="content-item" id="appearance">
+                <h4>Pengaturan Tampilan</h4>
+                <p>Kustom tema warna & brand style.</p>
+            </div>
+
+            <div class="content-item" id="notification">
+                <h4>Pengaturan Notifikasi</h4>
+                <p>Konfigurasi notifikasi WhatsApp / Email.</p>
+            </div>
+
+            <div class="content-item" id="analytics">
+                <h4>Pengaturan Analitik & Laporan</h4>
+                <p>Laporan penjualan & statistik performa.</p>
+            </div>
+
+            <hr>
+            <button class="btn btn-danger btn-sm mt-2" onclick="localStorage.clear(); location.reload();">
+                Reset Data Demo
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+  .settings-layout {
+    display: flex;
+    gap: 24px;
+}
+
+.settings-menu {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.setting-tab {
+    background: rgba(255,255,255,0.04);
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.setting-tab:hover,
+.setting-tab.active {
+    background: rgba(255,255,255,0.17);
+}
+
+.settings-content {
+    flex: 1;
+    padding: 12px 0;
+}
+
+.content-item {
+    display: none;
+    animation: fade .25s;
+}
+
+.content-item.active {
+    display: block;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+</style>
+
+<script>
+const tabs = document.querySelectorAll(".setting-tab");
+const content = document.querySelectorAll(".content-item");
+
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        content.forEach(c => c.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+    });
+});
+</script>
       </section>
 
     </main>

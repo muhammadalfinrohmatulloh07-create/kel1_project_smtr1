@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - UMKM Puddingku</title>
+
+<style>
+/* ---------- GLOBAL STYLE ---------- */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #0f172a;
+    color: #fff;
+    display: flex;
+    height: 100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar {
+    width: 260px;
+    background: #0c111f;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+}
+.sidebar-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.nav-item {
+    background: rgba(255,255,255,0.05);
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+.nav-item:hover,
+.nav-item.active {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ---------- MAIN CONTENT ---------- */
+.content {
+    flex: 1;
+    padding: 28px;
+    overflow-y: auto;
+}
+
+/* ---------- MINI TAB ---------- */
+.settings-layout {
+    display: flex;
+    gap: 24px;
+}
+.settings-menu {
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.setting-tab {
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: left;
+}
+.setting-tab:hover,
+.setting-tab.active {
+    background: rgba(255,255,255,0.35);
+}
+.settings-content {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.content-item {
+    display: none;
+}
+.content-item.active {
+    display: block;
+}
+
+/* FORM STYLE */
+label {
+    font-size: 14px;
+}
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 14px;
+    border-radius: 6px;
+    border: none;
+}
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-primary { background: #2563eb; color: #fff; }
+.btn-danger { background: #dc2626; color: #fff; }
+.btn-edit { background: #14b8a6; color: white; padding: 4px 12px; }
+.btn-del { background: #e11d48; color: white; padding: 4px 12px; }
+.product-item {
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Light mode override */
+.light-mode {
+  background: #f4f6f9 !important;
+  color: #222 !important;
+}
+
+.light-mode .sidebar {
+  background: #ffffff !important;
+  color: #222 !important;
+}
+
+.light-mode .card,
+.light-mode .settings-section {
+  background: #ffffff !important;
+  color: #222 !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar">
+    <div class="sidebar-title">UMKM PUDDINGKU</div>
+    <div class="nav-item active">⚙ Pengaturan</div>
+    <div class="nav-item">📦 Manajemen Produk</div>
+    <div class="nav-item">📊 Laporan</div>
+    <div class="nav-item">🚪 Logout</div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="content">
+    <h2>⚙ Pengaturan Admin</h2>
+    <p>Kelola konfigurasi sistem dan data.</p>
+
+    <div class="settings-layout">
+
+        <!-- MINI TAB MENU -->
+        <div class="settings-menu">
+            <button class="setting-tab active" data-target="general">Umum</button>
+            <button class="setting-tab" data-target="account">Admin</button>
+            <button class="setting-tab" data-target="payment">Pembayaran</button>
+            <button class="setting-tab" data-target="appearance">Tampilan</button>
+            <button class="setting-tab" data-target="notification">Notifikasi</button>
+            <button class="setting-tab" data-target="products">Manajemen Produk</button>
+        </div>
+
+        <!-- TAB CONTENT -->
+        <div class="settings-content">
+
+            <!-- 1 - PENGATURAN UMUM -->
+            <div class="content-item active" id="general">
+                <h3>Pengaturan Umum</h3>
+                <label>Nama UMKM</label>
+                <input id="storeName" placeholder="Puddingku">
+
+                <label>Alamat UMKM</label>
+                <input id="storeAddress" placeholder="Jl. Merdeka No. 5">
+
+                <button class="btn-primary" onclick="saveSettings()">Simpan</button>
+            </div>
+
+            <!-- 2 - ADMIN -->
+            <div class="content-item" id="account">
+                <h3>Pengaturan Akun Admin</h3>
+                <label>Nama Admin</label>
+                <input id="adminName">
+
+                <label>Password</label>
+                <input type="password" id="adminPass">
+
+                <button class="btn-primary" onclick="saveSettings()">Simpan</button>
+            </div>
+
+            <!-- 3 - PEMBAYARAN -->
+            <div class="content-item" id="payment">
+                <h3>Pembayaran</h3>
+                <label>Metode pembayaran:</label>
+                <select id="paymentMethod">
+                    <option value="Transfer Bank">Transfer Bank</option>
+                    <option value="E-Wallet">E-Wallet (Dana / ShopeePay / OVO)</option>
+                    <option value="COD">COD</option>
+                </select>
+
+                <button class="btn-primary" onclick="saveSettings()">Simpan</button>
+            </div>
+
+           <!-- Pengaturan Tampilan -->
+<div class="settings-section" id="pengaturan-tampilan">
+    <h3>Tampilan Dashboard</h3>
+    <label>Tema tampilan:</label>
+    <select id="themeSelect" class="form-select">
+        <option value="light">Light Mode</option>
+        <option value="dark">Dark Mode</option>
+    </select>
+</div>
+
+            <!-- 5 - NOTIFIKASI -->
+            <div class="content-item" id="notification">
+                <h3>Notifikasi Order</h3>
+                <label>Nomor WhatsApp Notifikasi</label>
+                <input id="notifWa" placeholder="+628xxx">
+
+                <button class="btn-primary" onclick="saveSettings()">Simpan</button>
+            </div>
+
+            <!-- 6 - CRUD PRODUK -->
+            <div class="content-item" id="products">
+                <h3>Manajemen Produk</h3>
+
+                <label>Nama Produk</label>
+                <input id="productName" placeholder="Pudding Strawberry">
+
+                <label>Harga Produk</label>
+                <input id="productPrice" type="number" placeholder="12000">
+
+                <button class="btn-primary" onclick="addProduct()">Tambah Produk</button>
+                <br><br>
+
+                <h3>Daftar Produk</h3>
+                <div id="productList"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+    <button class="btn-danger" onclick="localStorage.clear(); location.reload()">Reset Semua Data</button>
+</div>
+
+<!-- ================= JAVASCRIPT LOGIC ================= -->
+<script>
+/* ===== TAB CHANGE ===== */
+document.querySelectorAll(".setting-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+        document.querySelectorAll(".setting-tab").forEach(item => item.classList.remove("active"));
+        document.querySelectorAll(".content-item").forEach(item => item.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+    });
+});
+
+/* ======== SAVE SETTINGS ======== */
+function saveSettings() {
+    const settings = {
+        storeName: storeName.value,
+        storeAddress: storeAddress.value,
+        adminName: adminName.value,
+        adminPass: adminPass.value,
+        paymentMethod: paymentMethod.value,
+        theme: theme.value,
+        notifWa: notifWa.value,
+    };
+    localStorage.setItem("settings", JSON.stringify(settings));
+    alert("✅ Pengaturan berhasil disimpan!");
+}
+
+/* ======== LOAD SETTINGS ======== */
+window.onload = function () {
+    const saved = JSON.parse(localStorage.getItem("settings"));
+    if (saved) {
+        storeName.value = saved.storeName || "";
+        storeAddress.value = saved.storeAddress || "";
+        adminName.value = saved.adminName || "";
+        adminPass.value = saved.adminPass || "";
+        paymentMethod.value = saved.paymentMethod || "";
+        theme.value = saved.theme || "dark";
+        notifWa.value = saved.notifWa || "";
+    }
+    loadProducts();
+};
+
+/* ======== CRUD PRODUK ======== */
+function addProduct() {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    products.push({ name: productName.value, price: productPrice.value });
+    localStorage.setItem("products", JSON.stringify(products));
+
+    productName.value = "";
+    productPrice.value = "";
+
+    loadProducts();
+}
+
+function loadProducts() {
+    const productList = document.getElementById("productList");
+    productList.innerHTML = "";
+
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    products.forEach((p, index) => {
+        productList.innerHTML += `
+            <div class="product-item">
+                ${p.name} - Rp ${p.price}
+                <button class="btn-edit" onclick="editProduct(${index})">Edit</button>
+                <button class="btn-del" onclick="deleteProduct(${index})">Hapus</button>
+            </div>
+        `;
+    });
+}
+
+function deleteProduct(i) {
+    let products = JSON.parse(localStorage.getItem("products"));
+    products.splice(i, 1);
+    localStorage.setItem("products", JSON.stringify(products));
+    loadProducts();
+}
+
+function editProduct(i) {
+    let products = JSON.parse(localStorage.getItem("products"));
+    const baru = prompt("Nama baru:", products[i].name);
+    if (baru) {
+        products[i].name = baru;
+        localStorage.setItem("products", JSON.stringify(products));
+        loadProducts();
+    }
+}
+</script>
+
+<script>
+// Ambil elemen select theme
+const themeSelect = document.getElementById("themeSelect");
+
+// Fungsi menerapkan tema ke body
+function applyTheme(theme) {
+  if (theme === "light") {
+    document.body.classList.add("light-mode");
+  } else {
+    document.body.classList.remove("light-mode");
+  }
+}
+
+// Ketika user mengubah tema
+themeSelect.addEventListener("change", function () {
+  const selectedTheme = themeSelect.value;
+  localStorage.setItem("dashboardTheme", selectedTheme); // simpan ke localStorage
+  applyTheme(selectedTheme);
+});
+
+// Saat halaman pertama kali dibuka / direfresh
+(function () {
+  const savedTheme = localStorage.getItem("dashboardTheme") || "dark"; // default dark
+  themeSelect.value = savedTheme;
+  applyTheme(savedTheme);
+})();
+</script>
+
+</body>
+</html>
