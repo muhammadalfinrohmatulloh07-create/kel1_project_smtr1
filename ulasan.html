@@ -103,11 +103,13 @@
   }
 
   .rating-container {
-  max-width: 1000px;
+  max-width: 850px;
   margin: 80px auto 30px auto;
   display: flex;
-  gap: 20px;
+  flex-direction: column;   /* ✅ Atas -> Bawah */
+  gap: 25px;                /* ✅ Jarak antar card */
 }
+
 
 /* Bagian list ulasan */
 .review-list {
@@ -136,6 +138,21 @@
   }
 }
 
+.card-box {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(12px);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.card-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+
 </style>
 </head>
 <body>
@@ -146,7 +163,7 @@
 <div class="rating-container">
 
   <!-- BAGIAN ULASAN -->
-  <div class="review-list">
+  <div class="card-box">
     <h2 style="margin-bottom: 10px;">Ulasan Pelanggan 🍮</h2>
     <div id="avg-rating" style="font-size: 30px; font-weight: bold;">0.0</div>
     <div id="avg-stars" style="color:#ffb400; font-size: 22px;">☆☆☆☆☆</div>
@@ -156,7 +173,7 @@
   </div>
 
   <!-- FORM TAMBAH ULASAN -->
-  <div class="add-review">
+  <div class="card-box add-review">
     <h3>Tambah Ulasan Produk 🍮</h3>
 
     <input type="text" id="review-product" placeholder="Nama produk (contoh: Dessert Banoffee)">
