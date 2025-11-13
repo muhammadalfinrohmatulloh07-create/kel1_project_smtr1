@@ -12,11 +12,19 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#071024 0%, #071821 50%);color:var(--white);min-height:100vh}
+    body{margin:0;background:linear-gradient(180deg,#071024 0%, #071821 50%);color:var(--white);min-height:100vh;transition:background .2s,color .2s}
+
+    /* light mode */
+    body.light{
+      --bg:#f8fafc; --card:#ffffff; --muted:#6b7280; --accent:#f97316; --accent-2:#fb923c; --glass: rgba(0,0,0,0.03);
+      background: linear-gradient(180deg,#ffffff 0%, #f1f5f9 50%);
+      color:#0b1220;
+    }
 
     /* Layout */
     .app{display:grid;grid-template-columns:260px 1fr;gap:24px;padding:28px}
     .sidebar{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:14px;height:calc(100vh - 56px);position:sticky;top:28px}
+    body.light .sidebar{background:#ffffff;border:1px solid rgba(0,0,0,0.04);color:#0b1220}
     .brand{display:flex;gap:12px;align-items:center;margin-bottom:20px}
     .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700}
     .logo span{font-size:20px}
@@ -24,17 +32,21 @@
     .brand p{margin:0;color:var(--muted);font-size:12px}
     nav a{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;color:var(--muted);text-decoration:none;margin-bottom:6px}
     nav a.active, nav a:hover{background:var(--glass);color:var(--white)}
+    body.light nav a{color:var(--muted)}
+    body.light nav a.active, body.light nav a:hover{background:rgba(0,0,0,0.04);color:var(--accent)}
 
     .main{padding:6px 10px}
     .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
     .header-left{display:flex;gap:12px;align-items:center}
     .search{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:10px;color:var(--white);min-width:360px}
+    body.light .search{background:transparent;border:1px solid rgba(0,0,0,0.06);color:#0b1220}
     .user{display:flex;gap:12px;align-items:center}
     .avatar{width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,#ef9a9a,#f48fb1);display:flex;align-items:center;justify-content:center}
 
     /* cards */
     .row{display:flex;gap:18px;margin-bottom:18px}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;flex:1}
+    body.light .card{background:var(--card);box-shadow: 0 4px 14px rgba(2,6,23,0.04)}
     .kpi{display:flex;justify-content:space-between;align-items:center}
     .kpi .title{font-size:12px;color:var(--muted)}
     .kpi .value{font-size:22px;font-weight:700}
@@ -42,6 +54,7 @@
     /* Orders table */
     .table{width:100%;border-collapse:collapse;margin-top:12px}
     .table th, .table td{padding:10px 12px;text-align:left;font-size:14px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    body.light .table th, body.light .table td{border-bottom:1px solid rgba(0,0,0,0.06)}
     .table th{color:var(--muted);font-weight:600}
     .status{padding:6px 8px;border-radius:8px;font-weight:600;font-size:13px}
     .status.pending{background:rgba(245,158,11,0.12);color:#f59e0b}
@@ -51,19 +64,23 @@
 
     .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#111827;font-weight:700;border:none;cursor:pointer}
     .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+    body.light .btn.ghost{color:#0b1220;border:1px solid rgba(0,0,0,0.06)}
 
     /* Modal / right panel */
     .drawer{position:fixed;right:18px;top:80px;width:420px;height:calc(100vh - 160px);background-color: #071024;border-radius:12px;padding:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6);overflow:auto;display:none}
     .drawer.open{display:block}
+    body.light .drawer{background:#fff;color:#111;border:1px solid rgba(0,0,0,0.06)}
     .drawer h3{margin-top:0}
 
     /* Login screen */
     .login-wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(2,6,23,0.7), rgba(2,6,23,0.85));backdrop-filter: blur(4px)}
     .login{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:12px;width:420px}
+    body.light .login{background:#fff;color:#111;border:1px solid rgba(0,0,0,0.06)}
     .login h2{margin:0 0 6px 0}
     .form-row{margin-bottom:12px}
     label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
-    input[type=text], input[type=password], select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+    input[type=text], input[type=password], select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+    body.light input[type=text], body.light input[type=password], body.light select, body.light textarea{background:transparent;color:#111;border:1px solid rgba(0,0,0,0.08)}
 
     /* small */
     .muted{color:var(--muted);font-size:13px}
@@ -71,53 +88,30 @@
 
     /* responsive */
     @media (max-width:900px){.app{grid-template-columns:1fr;}.sidebar{position:relative;height:auto}.search{min-width:0;width:100%}}
-    
-  .settings-layout {
-    display: flex;
-    gap: 24px;
-}
 
-.settings-menu {
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+    /* settings */
+    .settings-layout {display: flex;gap: 24px;}
+    .settings-menu {width: 220px;display: flex;flex-direction: column;gap: 8px;}
+    .setting-tab {background: rgba(255,255,255,0.04);border: none;padding: 10px;border-radius: 10px;color: #fff;text-align: left;cursor: pointer;transition: .25s;}
+    .setting-tab:hover,.setting-tab.active {background: rgba(255,255,255,0.17);}
+    .settings-content {flex: 1;padding: 12px 0;}
+    .content-item {display: none;animation: fade .25s;}
+    .content-item.active {display: block;}
+    @keyframes fade {from { opacity: 0;} to   { opacity: 1;}}
 
-.setting-tab {
-    background: rgba(255,255,255,0.04);
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    text-align: left;
-    cursor: pointer;
-    transition: .25s;
-}
-
-.setting-tab:hover,
-.setting-tab.active {
-    background: rgba(255,255,255,0.17);
-}
-
-.settings-content {
-    flex: 1;
-    padding: 12px 0;
-}
-
-.content-item {
-    display: none;
-    animation: fade .25s;
-}
-
-.content-item.active {
-    display: block;
-}
-
-@keyframes fade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
+    /* product table small */
+    #section-products .product-actions button {margin-right:6px}
+    #productModal {
+      position: fixed; inset:0; display:none; align-items:center; justify-content:center;
+      background: rgba(0,0,0,0.5); z-index:9999;
+    }
+    #productModal .modal-inner {
+      width: 520px; max-width:95%; background:var(--card); padding:18px; border-radius:12px;
+    }
+    body.light #productModal .modal-inner{background:#fff}
+    .form-row-inline{display:flex;gap:8px}
+    .form-row-inline .col{flex:1}
+    img.product-thumb{width:56px;height:56px;border-radius:8px;object-fit:cover}
   </style>
 </head>
 <body>
@@ -146,7 +140,7 @@
     <aside class="sidebar">
       <div class="brand">
         <div class=""><span></span></div>
-        <img src="gambar/bg/logo.png" width="50" height="50">
+        <img src="gambar/bg/logo.png" width="50" height="50" alt="logo">
         <div>
           <h1>UMKM PUDDINGKU</h1>
           <p>Admin Dashboard</p>
@@ -175,7 +169,7 @@
             <div style="font-weight:700">Puddingku</div>
           </div>
           <div class=""></div>
-          <img src="gambar/bg/logo admin.png" width="50px" height="50px">
+          <img src="gambar/bg/logo admin.png" width="50px" height="50px" alt="admin-logo">
         </div>
       </div>
 
@@ -248,9 +242,22 @@
       <!-- products (demo) -->
       <section id="section-products" style="display:none">
         <div class="card">
-          <h3>Produk (demo)</h3>
-          <div class="muted">Daftar produk hanya untuk tampilan - tidak mempengaruhi backend</div>
-          <ul id="productList"></ul>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3>Produk (demo)</h3>
+            <div>
+              <button id="addProductTop" class="btn">+ Tambah Produk</button>
+            </div>
+          </div>
+          <div class="muted" style="margin-top:8px">Daftar produk; tambah/edit/hapus akan tersimpan di browser (localStorage).</div>
+
+          <div style="margin-top:12px;overflow:auto">
+            <table class="table" id="productTable">
+              <thead>
+                <tr><th>No</th><th>Gambar</th><th>Nama</th><th>Harga</th><th>Stok</th><th>Deskripsi</th><th>Status</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="productTableBody"></tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -280,22 +287,22 @@
                 <h4>Pengaturan Umum</h4>
                 <p>Atur nama UMKM, logo, lokasi & jam operasional.</p>
                 <label>Nama UMKM</label>
-                <input class="form-control" placeholder="Contoh: Puddingku">
+                <input class="form-control" id="setting_shop_name" placeholder="Contoh: Puddingku">
                 <br>
                 <label>Jam Operasional</label>
-                <input class="form-control" type="time">
+                <input class="form-control" id="setting_open_time" type="time">
             </div>
 
             <div class="content-item" id="account">
                 <h4>Pengaturan Akun & Admin</h4>
                 <p>Kelola akun admin & ubah password.</p>
-                <button class="btn btn-primary btn-sm">Tambah Admin</button>
+                <button class="btn btn-primary btn-sm" id="addAdminBtn">Tambah Admin</button>
             </div>
 
             <div class="content-item" id="product">
                 <h4>Pengaturan Produk / Layanan</h4>
-                <p>Tambah, edit & hapus produk.</p>
-                <button class="btn btn-success btn-sm">Tambah Produk</button>
+                <p>Tambah, edit & hapus produk (sama dengan halaman Produk).</p>
+                <button class="btn btn-success btn-sm" id="addProductSettingsBtn">Tambah Produk</button>
             </div>
 
             <div class="content-item" id="payment">
@@ -311,6 +318,11 @@
             <div class="content-item" id="appearance">
                 <h4>Pengaturan Tampilan</h4>
                 <p>Kustom tema warna & brand style.</p>
+                <div style="margin-top:8px">
+                  <label style="display:flex;align-items:center;gap:10px">
+                    <input type="checkbox" id="themeToggle"> Gunakan Mode Gelap
+                  </label>
+                </div>
             </div>
 
             <div class="content-item" id="notification">
@@ -324,12 +336,13 @@
             </div>
 
             <hr>
-            <button class="btn btn-danger btn-sm mt-2" onclick="localStorage.clear(); location.reload();">
+            <button id="resetData" class="btn btn-danger btn-sm mt-2">
                 Reset Data Demo
             </button>
         </div>
     </div>
 </div>
+
 <script>
 const tabs = document.querySelectorAll(".setting-tab");
 const content = document.querySelectorAll(".content-item");
@@ -357,6 +370,40 @@ tabs.forEach(tab => {
     </aside>
   </div>
 
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" aria-hidden="true">
+    <div class="modal-inner">
+      <h3 id="productModalTitle">Tambah Produk</h3>
+      <div style="margin-top:10px">
+        <label>Nama Produk</label>
+        <input type="text" id="prod_name" />
+      </div>
+      <div style="margin-top:8px" class="form-row-inline">
+        <div class="col">
+          <label>Harga (angka)</label>
+          <input type="text" id="prod_price" />
+        </div>
+        <div class="col">
+          <label>Stok (angka)</label>
+          <input type="text" id="prod_stock" />
+        </div>
+      </div>
+      <div style="margin-top:8px">
+        <label>Deskripsi</label>
+        <textarea id="prod_desc" rows="3"></textarea>
+      </div>
+      <div style="margin-top:8px">
+        <label>URL Gambar (opsional)</label>
+        <input type="text" id="prod_img" placeholder="https://..." />
+      </div>
+
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button id="saveProductBtn" class="btn">Simpan</button>
+        <button id="cancelProductBtn" class="btn ghost">Batal</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     /* ---------- Demo data & persistence ---------- */
     const DEMO_USER = {username:'admin', password:'puddingku123'};
@@ -369,11 +416,38 @@ tabs.forEach(tab => {
     function readData(){
       const raw = localStorage.getItem('puddingku_data');
       if(!raw){
-        const seed = {orders:SAMPLE_ORDERS, products:[{name:'Pudding Coklat'},{name:'Pudding Keju'},{name:'Pudding Matcha'},{name:'Pudding Oreo'}]};
+        const seed = {orders:SAMPLE_ORDERS, products:[
+          {id: Date.now()+1, name:'Pudding Coklat', price:12000, stock:15, desc:'Pudding coklat lembut', img:'', status:'Aktif'},
+          {id: Date.now()+2, name:'Pudding Keju', price:15000, stock:8, desc:'Pudding dengan topping keju', img:'', status:'Aktif'},
+          {id: Date.now()+3, name:'Pudding Matcha', price:10000, stock:20, desc:'Pudding rasa matcha', img:'', status:'Aktif'},
+          {id: Date.now()+4, name:'Pudding Oreo', price:13000, stock:10, desc:'Pudding oreo crunchy', img:'', status:'Aktif'}
+        ]};
         localStorage.setItem('puddingku_data', JSON.stringify(seed));
         return seed;
       }
-      try{return JSON.parse(raw);}catch(e){localStorage.removeItem('puddingku_data');return readData();}
+      try{
+        const parsed = JSON.parse(raw);
+
+        // normalize old-style products (string-only) into objects
+        if(Array.isArray(parsed.products)){
+          parsed.products = parsed.products.map((p,idx)=>{
+            if(typeof p === 'string') return {id: Date.now()+idx, name:p, price:0, stock:0, desc:'', img:'', status:'Aktif'};
+            // if object missing fields, fill defaults
+            return {
+              id: p.id || (Date.now()+idx),
+              name: p.name || '',
+              price: typeof p.price === 'number' ? p.price : (p.price ? Number(p.price)||0 : 0),
+              stock: typeof p.stock === 'number' ? p.stock : (p.stock ? Number(p.stock)||0 : 0),
+              desc: p.desc || p.description || '',
+              img: p.img || '',
+              status: p.status || 'Aktif'
+            };
+          });
+        } else {
+          parsed.products = [];
+        }
+        return parsed;
+      }catch(e){localStorage.removeItem('puddingku_data');return readData();}
     }
     function saveData(data){localStorage.setItem('puddingku_data', JSON.stringify(data));}
 
@@ -408,8 +482,7 @@ tabs.forEach(tab => {
     }));
 
     /* ---------- Rendering ---------- */
-    function formatRupiah(n){return 'Rp'+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
-
+    function formatRupiah(n){ if(n==null) n=0; return 'Rp'+n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
     function calcCounts(){
       const orders = state.orders||[];
       const cntPending = orders.filter(o=>o.status==='pending').length;
@@ -429,7 +502,7 @@ tabs.forEach(tab => {
 
     function renderRecent(){
       const tbody = document.querySelector('#recentTable tbody');tbody.innerHTML='';
-      const orders = state.orders.slice().reverse().slice(0,6);
+      const orders = (state.orders||[]).slice().reverse().slice(0,6);
       orders.forEach((o,i)=>{
         const tr=document.createElement('tr');
         tr.innerHTML=`<td>${i+1}</td><td>${o.customer}</td><td>${o.items.length}</td><td>${formatRupiah(o.total)}</td><td><span class="status ${o.status}">${o.status.toUpperCase()}</span></td><td><div class="order-actions"><button class="btn ghost" data-id="${o.id}" data-action="view">Lihat</button></div></td>`;
@@ -439,7 +512,7 @@ tabs.forEach(tab => {
 
     function renderOrdersTable(){
       const tbody = document.querySelector('#ordersTable tbody');tbody.innerHTML='';
-      state.orders.forEach((o,idx)=>{
+      (state.orders||[]).forEach((o,idx)=>{
         const tr=document.createElement('tr');
         tr.innerHTML=`<td>${idx+1}</td><td>${o.created}</td><td>${o.customer}<div class="muted">${o.phone||''}</div></td><td>${o.items.map(it=>it.name+' x'+it.qty).join('<br>')}</td><td>${formatRupiah(o.total)}</td><td><span class="status ${o.status}">${o.status.toUpperCase()}</span></td><td><select data-id="${o.id}" class="trackingSelect"><option>Menunggu konfirmasi</option><option>Sedang dikemas</option><option>Dalam pengiriman</option><option>Selesai</option></select></td><td><button class="btn" data-id="${o.id}" data-action="view">Detail</button></td>`;
         tbody.appendChild(tr);
@@ -455,8 +528,30 @@ tabs.forEach(tab => {
       document.querySelectorAll('button[data-action="view"]').forEach(b=>b.addEventListener('click', (e)=>{const id=b.dataset.id;openDrawer(id);}));
     }
 
+    /* ---------- Products: render product table in section-products ---------- */
     function renderProducts(){
-      const ul=document.getElementById('productList');ul.innerHTML='';state.products.forEach(p=>{const li=document.createElement('li');li.textContent=p.name;ul.appendChild(li);});
+      // this one used by dashboard older code: keep it for compatibility
+      const ul=document.getElementById('productList'); if(ul) { ul.innerHTML=''; (state.products||[]).forEach(p=>{const li=document.createElement('li');li.textContent=p.name;ul.appendChild(li);}); }
+      // render table
+      const tbody = document.getElementById('productTableBody'); if(!tbody) return;
+      tbody.innerHTML = '';
+      (state.products||[]).forEach((p, idx)=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${idx+1}</td>
+          <td>${p.img ? `<img class="product-thumb" src="${p.img}" alt="img">` : '-'}</td>
+          <td>${escapeHtml(p.name)}</td>
+          <td>${formatRupiah(p.price)}</td>
+          <td>${p.stock}</td>
+          <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escapeHtml(p.desc||'')}</td>
+          <td>${p.status || 'Aktif'}</td>
+          <td class="product-actions">
+            <button class="btn ghost" data-action="edit" data-id="${p.id}">Edit</button>
+            <button class="btn" data-action="delete" data-id="${p.id}">Hapus</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
     }
 
     function renderRecentTableForDashboard(){renderRecent();}
@@ -465,17 +560,17 @@ tabs.forEach(tab => {
 
     /* ---------- Drawer (order detail) ---------- */
     const drawer=document.getElementById('drawer');
-    function openDrawer(id){const order=state.orders.find(o=>o.id===id);if(!order) return;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');const content=document.getElementById('drawerContent');content.innerHTML='';
+    function openDrawer(id){const order=(state.orders||[]).find(o=>o.id===id);if(!order) return;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');const content=document.getElementById('drawerContent');content.innerHTML='';
       const html = [];
       html.push('<div class="muted">ID: '+order.id+'</div>');
       html.push('<h3>'+order.customer+'</h3>');
       html.push('<div class="muted">'+order.created+'</div>');
       html.push('<div style="margin-top:8px"><strong>Items</strong><ul>');
-      order.items.forEach(it=>{html.push('<li>'+it.name+' x'+it.qty+' — '+formatRupiah(it.price*it.qty)+'</li>')});
+      order.items.forEach(it=>{html.push('<li>'+escapeHtml(it.name)+' x'+it.qty+' — '+formatRupiah(it.price*it.qty)+'</li>')});
       html.push('</ul></div>');
       html.push('<div style="margin-top:8px"><strong>Total: </strong>'+formatRupiah(order.total)+'</div>');
       html.push('<div style="margin-top:8px"><label class="muted">Status</label><select id="statusSelect"><option value="pending">Pending</option><option value="prep">Prep</option><option value="ship">Ship</option><option value="cancel">Cancel</option></select></div>');
-      html.push('<div style="margin-top:8px"><label class="muted">Tracking</label><input id="trackingInput" value="'+(order.tracking||'')+'"/></div>');
+      html.push('<div style="margin-top:8px"><label class="muted">Tracking</label><input id="trackingInput" value="'+escapeHtml(order.tracking||'')+'"/></div>');
       html.push('<div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end"><button id="saveOrderBtn" class="btn">Simpan</button><button id="deleteOrderBtn" class="btn ghost">Hapus</button></div>');
       content.innerHTML=html.join('');
       document.getElementById('statusSelect').value=order.status;
@@ -485,22 +580,128 @@ tabs.forEach(tab => {
     function closeDrawer(){drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');}
     document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
 
-    /* ---------- Search */
-    document.getElementById('search').addEventListener('input', (e)=>{const q=e.target.value.trim().toLowerCase(); if(!q){renderOrdersTable();return;} const tbody=document.querySelector('#ordersTable tbody');tbody.innerHTML=''; state.orders.filter(o=>o.customer.toLowerCase().includes(q) || o.id.toLowerCase().includes(q) || (o.phone||'').includes(q)).forEach((o,idx)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${idx+1}</td><td>${o.created}</td><td>${o.customer}<div class="muted">${o.phone||''}</div></td><td>${o.items.map(it=>it.name+' x'+it.qty).join('<br>')}</td><td>${formatRupiah(o.total)}</td><td><span class="status ${o.status}">${o.status.toUpperCase()}</span></td><td>${o.tracking||''}</td><td><button class="btn" data-id="${o.id}" data-action="view">Detail</button></td>`;tbody.appendChild(tr);});
+    /* ---------- Search ---------- */
+    document.getElementById('search').addEventListener('input', (e)=>{const q=e.target.value.trim().toLowerCase(); if(!q){renderOrdersTable();return;} const tbody=document.querySelector('#ordersTable tbody');tbody.innerHTML=''; (state.orders||[]).filter(o=>o.customer.toLowerCase().includes(q) || o.id.toLowerCase().includes(q) || (o.phone||'').includes(q)).forEach((o,idx)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${idx+1}</td><td>${o.created}</td><td>${o.customer}<div class="muted">${o.phone||''}</div></td><td>${o.items.map(it=>it.name+' x'+it.qty).join('<br>')}</td><td>${formatRupiah(o.total)}</td><td><span class="status ${o.status}">${o.status.toUpperCase()}</span></td><td>${o.tracking||''}</td><td><button class="btn" data-id="${o.id}" data-action="view">Detail</button></td>`;tbody.appendChild(tr);});
       document.querySelectorAll('button[data-action="view"]').forEach(b=>b.addEventListener('click', (e)=>{openDrawer(b.dataset.id);}));
     });
 
     /* ---------- Export / reset ---------- */
     document.getElementById('exportBtn').addEventListener('click', ()=>{const data = JSON.stringify(state, null, 2);const blob=new Blob([data],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='puddingku_data.json';a.click();URL.revokeObjectURL(url);});
 
-    document.getElementById('resetData').addEventListener('click', ()=>{if(confirm('Reset data demo ke keadaan awal?')){localStorage.removeItem('puddingku_data');state=readData();renderAll();alert('Reset selesai.')}});
+    // resetData button (exists now)
+    document.getElementById('resetData').addEventListener('click', ()=>{if(confirm('Reset data demo ke keadaan awal?')){localStorage.removeItem('puddingku_data');localStorage.removeItem('puddingku_theme');state=readData();applyThemeFromStorage();renderAll();alert('Reset selesai.')}});
 
-    document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+    /* ---------- Product modal & actions ---------- */
+    const productModal = document.getElementById('productModal');
+    const prodName = document.getElementById('prod_name');
+    const prodPrice = document.getElementById('prod_price');
+    const prodStock = document.getElementById('prod_stock');
+    const prodDesc = document.getElementById('prod_desc');
+    const prodImg = document.getElementById('prod_img');
+    const saveProductBtn = document.getElementById('saveProductBtn');
+    const cancelProductBtn = document.getElementById('cancelProductBtn');
+    let editingProductId = null;
+
+    // open modal helper
+    function openProductModal(product){
+      productModal.style.display='flex';
+      productModal.setAttribute('aria-hidden','false');
+      if(product){
+        editingProductId = product.id;
+        document.getElementById('productModalTitle').innerText = 'Edit Produk';
+        prodName.value = product.name || '';
+        prodPrice.value = product.price || 0;
+        prodStock.value = product.stock || 0;
+        prodDesc.value = product.desc || '';
+        prodImg.value = product.img || '';
+      } else {
+        editingProductId = null;
+        document.getElementById('productModalTitle').innerText = 'Tambah Produk';
+        prodName.value=''; prodPrice.value=''; prodStock.value=''; prodDesc.value=''; prodImg.value='';
+      }
+    }
+    function closeProductModal(){
+      productModal.style.display='none';
+      productModal.setAttribute('aria-hidden','true');
+      editingProductId = null;
+    }
+    document.getElementById('addProductTop').addEventListener('click', ()=>openProductModal());
+    const addProductSettingsBtn = document.getElementById('addProductSettingsBtn');
+    if(addProductSettingsBtn) addProductSettingsBtn.addEventListener('click', ()=>openProductModal());
+
+    cancelProductBtn.addEventListener('click', ()=>closeProductModal());
+
+    saveProductBtn.addEventListener('click', ()=>{
+      const name = prodName.value.trim(); const price = Number(prodPrice.value)||0; const stock = Number(prodStock.value)||0; const desc = prodDesc.value.trim(); const img = prodImg.value.trim();
+      if(!name){alert('Nama produk diperlukan'); return;}
+      if(editingProductId){
+        // update
+        const p = (state.products||[]).find(x=>x.id===editingProductId);
+        if(p){p.name=name; p.price=price; p.stock=stock; p.desc=desc; p.img=img; p.status = p.stock>0 ? 'Aktif' : 'Habis';}
+      } else {
+        const newProd = {id: Date.now(), name, price, stock, desc, img, status: stock>0 ? 'Aktif' : 'Habis'};
+        state.products.push(newProd);
+      }
+      saveData(state); renderProducts(); closeProductModal(); alert('Produk disimpan.');
+    });
+
+    // delegate edit/delete buttons in product table
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button[data-action]');
+      if(!btn) return;
+      const action = btn.dataset.action;
+      const id = Number(btn.dataset.id);
+      if(action === 'edit'){
+        const p = (state.products||[]).find(x=>x.id===id);
+        if(p) openProductModal(p);
+      } else if(action === 'delete'){
+        if(confirm('Hapus produk ini?')){
+          state.products = (state.products||[]).filter(x=>x.id!==id);
+          saveData(state); renderProducts();
+        }
+      }
+    });
+
+    /* ---------- theme (dark/light) ---------- */
+    const themeToggle = document.getElementById('themeToggle');
+    const applyThemeFromStorage = ()=>{
+      const t = localStorage.getItem('puddingku_theme') || 'dark';
+      if(t === 'light'){ document.body.classList.add('light'); themeToggle.checked = false; } else { document.body.classList.remove('light'); themeToggle.checked = true; }
+    };
+    // store: 'dark' (default) or 'light'
+    applyThemeFromStorage();
+    themeToggle.addEventListener('change', ()=>{
+      if(themeToggle.checked){
+        // checked = dark
+        localStorage.setItem('puddingku_theme','dark');
+        document.body.classList.remove('light');
+      } else {
+        localStorage.setItem('puddingku_theme','light');
+        document.body.classList.add('light');
+      }
+    });
 
     /* ---------- Init attach events for recent view buttons (delegation) ---------- */
     document.addEventListener('click', (e)=>{
       const btn = e.target.closest('button[data-action]'); if(!btn) return; const action=btn.dataset.action; const id=btn.dataset.id; if(action==='view') openDrawer(id);
     });
+
+    /* ---------- utility escape html ---------- */
+    function escapeHtml(unsafe) {
+      if(!unsafe && unsafe!==0) return '';
+      return String(unsafe).replace(/[&<>"'`=\/]/g, function (s) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;',
+          '/': '&#x2F;',
+          '`': '&#x60;',
+          '=': '&#x3D;'
+        })[s];
+      });
+    }
 
     /* ---------- export for debugging ---------- */
     window._puddingku_state = state;
